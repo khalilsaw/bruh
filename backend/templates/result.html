@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume</title>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="static\css\style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="profile">
+      <div class="profile_container">
+        <div class="profile_profileImg">
+          <img src="img\Logo-Experskills.png" alt="EXPERTSKILLS">
+        </div>
+        <div>
+          <h1 class="profile_name">
+            <span class="profile_name_lastName"> {{ data.name }} </span>
+          </h1>
+          <p class="profile_title">Software Developer</p>
+          <div class="contact_info">
+            <p class="description">
+              Phone: {{ data.phone_number }}
+            </p>
+            <p class="description">
+              Email: {{ data.email_address }}
+            </p>
+          </div>
+          
+                  </div>
+      </div>
+    </div>
+    <div class="skills">
+        <h3 class="title">FORMATION ASSURÉE </h3>
+          <p class="myStyle"> {{ data.education }}</p>
+
+      </div>
+      <div class="ref">
+        <h3 class="title">ENSEIGNEMENT</h3>
+        <p class="myStyle"> {{ data.education }}</p>
+      </div>
+
+      <div class="edu">
+        <h3 class="title">Experience</h3>
+        <p class="myStyle">{{ data.experience }}</p>
+      </div>
+
+    <div class="group-1">
+      <div class="skills">
+        <h3 class="title">Skills</h3>
+        <p class="myStyle">{{ data.skills }}</p>
+      </div>
+      
+      <div class="certification">
+        <h3 class="title">Certifications</h3>
+        <p class="myStyle">{{ data.certification }}</p>
+      </div>
+    </div>
+    <div class="group-2">
+      <div class="exp">
+        <h3 class="title">Education</h3>
+        <p class="myStyle">{{ data.education }}</p>
+      </div>
+      <div class="awards">
+        <h3 class="title">Languages</h3>
+        <p class="myStyle">{{ data.language }}</p>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <a class="downloadBtn" href="#" onclick="redirectToPage()">Download Resume</a>
+  <a href="/">Back</a> 
+
+          <script>
+            function redirectToPage() {
+              // Redirect to the desired HTML page
+              window.location.href = "/tablepage";
+            }
+          </script>
+  <script>
+    feather.replace()
+  </script>
+  
+  {% for image in data.images %}
+      <img src="{{ image }}" alt="Image from CV">
+  {% endfor %}
+
+  <form method="POST" action="{{ url_for('download_pdf') }}">
+      <!-- Add hidden inputs for each piece of data you want to include in the PDF -->
+      <input type="hidden" name="name" value="{{ data.name }}">
+      <input type="hidden" name="phone_number" value="{{ data.phone_number }}">
+      <input type="hidden" name="email_address" value="{{ data.email_address }}">
+      <input type="hidden" name="education" value="{{ data.education }}">
+      <input type="hidden" name="skills" value="{{  data.skills }}">
+      <input type="hidden" name="experience" value="{{ data.experience }}">
+      <input type="hidden" name="language" value="{{ data.language }}">
+      <input type="hidden" name="certification" value="{{ data.certification }}">
+      <!-- Add a submit button to download the PDF -->
+  </form>
+</body>
+
+</html>
+
+
+
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Extraction Results</title>
+</head>
+<body>
+    <h1>CV Extraction Results</h1>
+
+    <h4>Name: {{ data.name }}</h4>
+    <h4>Phone Number: {{ data.phone_number }}</h4>
+    <h4>Email Address: {{ data.email_address }}</h4>
+    <h4>Education: {{ data.education }}</h4>
+    <h4>Skills: {{ data.skills }}</h4>
+    <h4>Experience: {{ data.experience }}</h4>
+    <h4>Language: {{ data.language }}</h4>
+    <h4>Certification: {{ data.certification }}</h4>
+
+
+    <h4>Images:</h4>
+    {% for image in data.images %}
+        <img src="{{ image }}" alt="Image from CV">
+    {% endfor %}
+
+</body>
+</html>
