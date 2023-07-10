@@ -1,27 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Extraction Results</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume</title>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="static/css/style.css">
 </head>
+
 <body>
-    <h1>CV Extraction Results</h1>
+  <div class="container">
+    <div class="profile">
+      <div class="profile_container">
+        <div class="profile_profileImg">
+          <img src="img/Logo-Experskills.png" alt="EXPERTSKILLS">
+        </div>
+        <div>
+          <h1 class="profile_name">
+            <span class="profile_name_lastName">{{ data.name }}</span>
+          </h1>
+          <p class="profile_title">Software Developer</p>
+          <div class="contact_info">
+            <p class="description">
+              Phone: {{ data.phone_number }}
+            </p>
+            <p class="description">
+              Email: {{ data.email_address }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="skills">
+      <h3 class="title">FORMATION ASSURÉE</h3>
+      <p class="myStyle">{{ data.education }}</p>
+    </div>
+    <div class="ref">
+      <h3 class="title">ENSEIGNEMENT</h3>
+      <p class="myStyle">{{ data.education }}</p>
+    </div>
+    <div class="edu">
+      <h3 class="title">Experience</h3>
+      <p class="myStyle">{{ data.experience }}</p>
+    </div>
+    <div class="group-1">
+      <div class="skills">
+        <h3 class="title">Skills</h3>
+        <p class="myStyle">{{ data.skills }}</p>
+      </div>
+      <div class="certification">
+        <h3 class="title">Certifications</h3>
+        <p class="myStyle">{{ data.certification }}</p>
+      </div>
+    </div>
+    <div class="group-2">
+      <div class="exp">
+        <h3 class="title">Education</h3>
+        <p class="myStyle">{{ data.education }}</p>
+      </div>
+      <div class="awards">
+        <h3 class="title">Languages</h3>
+        <p class="myStyle">{{ data.language }}</p>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <a class="downloadBtn" href="/generate_pdf" target="_blank">Generate PDF</a>
+  <button class="uploadBtn" onclick="uploadToMongoDB()">Upload to MongoDB</button>
+  <a href="/">Back</a>
 
-    <h4>Name: {{ data.name }}</h4>
-    <h4>Phone Number: {{ data.phone_number }}</h4>
-    <h4>Email Address: {{ data.email_address }}</h4>
-    <h4>Education: {{ data.education }}</h4>
-    <h4>Skills: {{ data.skills }}</h4>
-    <h4>Experience: {{ data.experience }}</h4>
-    <h4>Language: {{ data.language }}</h4>
-    <h4>Certification: {{ data.certification }}</h4>
+  <script>
+    function uploadToMongoDB() {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/upload_to_mongodb');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          console.log('PDF uploaded to MongoDB successfully');
+        } else {
+          console.log('Failed to upload PDF to MongoDB');
+        }
+      };
+      xhr.onerror = function () {
+        console.error('Request failed');
+      };
+      xhr.send(JSON.stringify({ name: '{{ data.name }}', pdf: '{{ data.pdf }}' }));
+    }
+  </script>
+  <script>
+    feather.replace();
+  </script>
 
-
-    <h4>Images:</h4>
-    {% for image in data.images %}
-        <img src="{{ image }}" alt="Image from CV">
-    {% endfor %}
-
+  {% for image in data.images %}
+  <img src="{{ image }}" alt="Image from CV">
+  {% endfor %}
 </body>
+
 </html>

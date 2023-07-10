@@ -1,145 +1,137 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>CV Extractor</title>
     <script>
-        /* window.addEventListener('DOMContentLoaded', (event) => {
-            const token = getTokenFromURL();
-            console.log('Hashed token:', token);
-            validateAndStoreToken(token);
-        }); */
+      window.addEventListener("DOMContentLoaded", (event) => {
+        const token = getTokenFromURL();
+        console.log("Hashed token:", token);
+        validateAndStoreToken(token);
+      });
 
-/* function getTokenFromURL() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get('value');
-}
+      function getTokenFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get("value");
+      }
 
-function validateAndStoreToken(hashedToken) {
-    console.log(hashedToken)
-  const xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost:4000/verifyToken');
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      const data = JSON.parse(xhr.responseText);
-      console.log('Token is valid');
-      console.log('User Type:', data.user_type);
-      console.log('User ID:', data.user_id);
+      function validateAndStoreToken(hashedToken) {
+        console.log(hashedToken);
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:4000/verifyToken");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            console.log("Token is valid");
+            console.log("User Type:", data.user_type);
+            console.log("User ID:", data.user_id);
 
-      // Store the token in local storage
-      localStorage.setItem('token', hashedToken);
-    } else {
-      console.log('Token verification failed');
-    }
-  };
-  xhr.onerror = function () {
-    console.error('Request failed');
-  };
-  xhr.send(JSON.stringify({ token: hashedToken }));
-} */
+            // Store the token in local storage
+            localStorage.setItem("token", hashedToken);
+          } else {
+            console.log("Token verification failed");
+          }
+        };
+        xhr.onerror = function () {
+          console.error("Request failed");
+        };
+        xhr.send(JSON.stringify({ token: hashedToken }));
+      }
 
-        function logout() {
-            // Remove the token from local storage
-            localStorage.removeItem('token');
+      function logout() {
+        // Remove the token from local storage
+        localStorage.removeItem("token");
 
-            // Redirect the user to the login page
-            window.location.href = 'http://localhost:3000/';
-        }
+        // Redirect the user to the login page
+        window.location.href = "http://localhost:3000/";
+      }
     </script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+      }
 
-        h1 {
-            text-align: center;
-            color: #18a8e0;
-        }
+      h1 {
+        text-align: center;
+        color: #18a8e0;
+      }
 
-        .container {
-          
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+      .form-group {
+        margin-bottom: 20px;
+      }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #777;
-        }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #777;
+      }
 
-        input[type="file"] {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            background-color: #fff;
-        }
+      input[type="file"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        background-color: #fff;
+      }
 
-        input[type="submit"] {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 3px;
-            background-color: #e478ba;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-        }
+      input[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        background-color: #e478ba;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+      }
 
-        input[type="submit"]:hover {
-            background-color: #18a8e0;
-        }
-        
-        #logoutButton {
-      background-color: #1b40b9;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 25px;
-      margin: 10px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
+      input[type="submit"]:hover {
+        background-color: #18a8e0;
+      }
 
-
-        
+      #logoutButton {
+        background-color: #1b40b9;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 25px;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
     </style>
-</head>
-<body>
-
-
+  </head>
+  <body>
     <div class="container">
-        <h1>Upload your resume</h1>
-        <form action="/extract_info" method="post" enctype="multipart/form-data">
-
-            <div class="form-group">
-                <label for="file">Select a file:</label>
-                <input type="file" name="file" id="file" >
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Upload">
-            </div>
-        </form>
-        
+      <h1>Upload your resume</h1>
+      <form action="/extract_info" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="file">Select a file:</label>
+          <input type="file" name="file" id="file" />
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Upload" />
+        </div>
+      </form>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <button id="logoutButton" onclick="logout()"> Déconnexion</button>
-</body>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <button id="logoutButton" onclick="logout()">Déconnexion</button>
+  </body>
 </html>
